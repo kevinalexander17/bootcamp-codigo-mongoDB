@@ -1,0 +1,52 @@
+use("sample_training");
+db.alumnos.insertMany(
+    [{
+        "_id": 4,
+        "nombre": "Bert",
+        "apellido": "Eakly"
+      }, {
+        "_id": 1,
+        "nombre": "Kayla",
+        "apellido": "Bannerman"
+      }, {
+        "_id": 5,
+        "nombre": "Faye",
+        "apellido": "Davoren"
+      }],
+      {
+        ordered: false
+      }
+)
+
+use("sample_training");
+db.curso.updateMany(
+    {   
+        //$gt, $lt, $lte
+        estudiantes:{
+            $gt: 5
+        }
+    },
+    {
+            $set: {
+                profesor: "Fulgencio"
+            }
+        
+    }
+);
+
+use("sample_training")
+db.curso.find();
+
+
+use("sample_training")
+db.createCollection("peloterosFC");
+
+use("sample_training")
+db.peloterosFC.insertOne(
+    {
+    nombre: "Leonel",
+    edad: 22,
+    posicion: "delantero"
+    goles: 11
+}
+);

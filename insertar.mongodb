@@ -1,0 +1,86 @@
+use('sample_training');
+db.createCollection("curso");
+
+use('sample_training');
+db.curso.insertOne(
+    {
+        nombre: "Programacion",
+        estudiantes: 20
+    }
+)
+use('sample_training');
+db.curso.find();
+
+use('sample_training');
+db.curso.insertOne(
+    {
+        nombre: "Programacion",
+        estudiantes: 20,
+        profesor: "Girafales"
+    }
+);
+
+use('sample_training');
+db.curso.insertMany(
+    [{
+  "nombre": "Tiffani",
+  "profesor": "Carmina",
+  "estudiantes": 1
+}, {
+  "nombre": "Cybill",
+  "profesor": "Joete",
+  "estudiantes": 2
+}, {
+  "nombre": "Wandie",
+  "profesor": "Libbi",
+  "estudiantes": 3
+}, {
+  "nombre": "Darwin",
+  "profesor": "Manny",
+  "estudiantes": 4
+}, {
+  "nombre": "Allie",
+  "profesor": "Hansiain",
+  "estudiantes": 5
+}, {
+  "nombre": "Harold",
+  "profesor": "Quinta",
+  "estudiantes": 6
+}, {
+  "nombre": "Lance",
+  "profesor": "Petronia",
+  "estudiantes": 7
+}, {
+  "nombre": "Syd",
+  "profesor": "Marshal",
+  "estudiantes": 8
+}, {
+  "nombre": "Franny",
+  "profesor": "Garrot",
+  "estudiantes": 9
+}, {
+  "nombre": "Vera",
+  "profesor": "Flora",
+  "estudiantes": 10
+}, {
+  "nombre": "Bo",
+  "profesor": "Culley",
+  "estudiantes": 11
+}, {
+  "nombre": "Cathrine",
+  "profesor": "Heindrick",
+  "estudiantes": 12
+}, {
+  "nombre": "Fabian",
+  "profesor": "Faustine",
+  "estudiantes": 13
+}, {
+  "nombre": "Tildie",
+  "profesor": "Jori",
+  "estudiantes": 14
+}, {
+  "nombre": "Esme",
+  "profesor": "Katha",
+  "estudiantes": 15
+}]
+);

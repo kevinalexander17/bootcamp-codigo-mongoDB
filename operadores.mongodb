@@ -1,0 +1,222 @@
+use("sample_training");
+db.zips.find();
+
+use("sample_training")
+db.zips.find(
+    {
+    pop: {
+        $gt: 30000
+        }
+    }
+);
+
+
+use("sample_training")
+db.zips.find({
+    $and :[
+        {
+            pop:{
+                $gt: 20000
+            }
+        },
+        {
+            pop:{
+                $lt: 40000
+            }
+        },
+        {
+            state: "AL"
+        }
+    ]
+    });
+
+
+use("sample_training")
+db.zips.find({
+    $and :[
+        {
+            pop:{
+                $gt: 20000
+            }
+        },
+        {
+            pop:{
+                $lt: 40000
+            }
+        },
+        {
+            state: "AL"
+        }
+    ]
+    }).count();
+
+
+use("sample_mflix")
+db.movies.find();
+
+//in
+use("sample_mflix")
+db.movies.find({
+    genres: {
+        $in: ["Drama","History"]
+    }
+});
+
+
+use("sample_training")
+db.zips.find(
+    {
+        "loc.x":{
+            $gt: 100
+        }
+    }
+)
+
+use("sample_training")
+db.zips.find(
+    {
+        $and:[
+            {
+                pop:{
+                    $gt: 3000
+                }
+            },
+            {
+                "loc.x":{
+                    $lt: 70
+                }
+            }
+        ]
+    }
+).count();
+
+
+// de la coleccion companies
+// obtener los documentos donde
+// tenga un fundador llamado Mark
+use("sample_training")
+db.companies.find(
+    {
+        relationships :{
+            $elemMatch: {
+                'person.first_name' : "Mark"
+            }
+        }   
+    },
+    {
+        relationships : true
+    }
+).count();
+
+
+use("sample_training")
+db.companies.find().count();
+
+
+use("sample_analytics");
+db.createCollection("books",
+{
+    validator:
+    {
+        $jsonSchema:
+        {
+            bsonType:'object',
+            required:["titulo","author","anio","precio"],
+            properties:
+            {
+                titulo:{
+                    bsonType: 'string'
+                },
+                author:
+                {
+                    bsonType: 'string'
+                },
+                
+                anio:
+                {
+                    bsonType:'date'
+                },
+                precio:
+                {
+                    bsonType:'number'
+                }
+                                   
+            }
+        }
+    }
+}
+);
+
+
+
+use("sample_analytics");
+db.createCollection("productos",
+{
+    validator:
+    {
+        $jsonSchema:
+        {
+            bsonType:'object',
+            required:["nombre","precio","talla"],
+            properties:
+            {
+                nombre:{
+                    bsonType: 'string'
+                },
+                precio:
+                {
+                    bsonType: 'number'
+                },
+                
+                talla:
+                {
+                    bsonType:'array'                                   
+                }
+            }
+        }
+    }
+}
+);
+
+
+use("sample_analytics");
+db.productos.insertOne({
+    nombre: "T-shirt",
+    precio: 50,
+    talla: ['S','M','L']
+})
+
+
+use("sample_analytics");
+db.productos.find();
+
+
+use("sample_analytics");
+db.createCollection('films',{
+    validator:{
+        $jsonSchema:{
+            bsonType: 'object',
+            required:['title','cast','director'],
+            properties:{
+                title:{
+                    bsonType: 'string'
+                },
+                cast:{
+                    bsonType: 'array'
+                },
+                director:{
+                    bsonType: 'object',
+                    required: ['firstName', 'lastName'],
+                    properties:{
+                        firstName:{
+                            bsonType: 'string'
+                        },
+                        lastName:{
+                            bsonType: 'string'
+                        }
+                    }
+                }
+            }
+        }
+    }
+});
